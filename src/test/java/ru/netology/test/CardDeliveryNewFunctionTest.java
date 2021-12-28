@@ -38,7 +38,7 @@ public class CardDeliveryNewFunctionTest {
         $("[data-test-id='replan-notification'] .notification__content").shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
         $$("[class='button__content']").findBy(text("Перепланировать")).click();
         $("[data-test-id='success-notification'] .notification__title").shouldHave(text("Успешно!"), Duration.ofSeconds(15));
-        $("[data-test-id='success-notification'] .notification__content").shouldHave(text("Встреча успешно запланирована на " + info.getFirstPlanningDate()));
+        $("[data-test-id='success-notification'] .notification__content").shouldHave(text("Встреча успешно запланирована на " + info.getSecondPlanningDate()));
     }
 
     @Test
