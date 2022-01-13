@@ -15,14 +15,24 @@ public class DataGenerator {
             "Владимир", "Иркутск", "Курган", "Санкт-Петербург", "Новосибирск", "Южно-Сахалинск", "Тюмень",
             "Биробиджан", "Нарьян-Мар", "Орёл", "Севастополь", "Салехард", "Анадырь"};
 
-    String random = (city[new Random().nextInt(city.length)]);
+    String randomCity = (city[new Random().nextInt(city.length)]);
 
-   public static String firstCalculationDate() {
-        return LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    String [] name = {"Пётр Мамонов", "Алёна Ёжикова", "Матрёна Златоусова", "Артём Климов",
+            "Семён Русаков", "Анна Аксёнова", "Филипп Берёза", "Борис Головачёв", "Екатерина Дрёмова"};
+
+    String randomName = (name[new Random().nextInt(name.length)]);
+
+    public static String calculationDate(int days) {
+        return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
-    public static String secondCalculationDate() {
-        return LocalDate.now().plusDays(6).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    public static String generateValidName(String locale) {
+        Faker faker = new Faker(new Locale(locale));
+        return faker.name().fullName().replace("ё", "е");
+    }
+
+    public static String generateInvalidName() {
+        return randomName;
     }
 
     @UtilityClass
@@ -30,10 +40,8 @@ public class DataGenerator {
         public static RegistrationInfo generateInfo(String locale) {
             Faker faker = new Faker(new Locale(locale));
             return new RegistrationInfo(
-                    random,
-                    firstCalculationDate(),
-                    secondCalculationDate(),
-                    faker.name().fullName(),
+                    randomCity,
+                    generateValidName("ru"),
                     faker.phoneNumber().phoneNumber());
         }
     }

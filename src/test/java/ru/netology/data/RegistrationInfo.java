@@ -8,8 +8,6 @@ import lombok.Data;
 
 public class RegistrationInfo {
     private String city;
-    private String firstPlanningDate;
-    private String secondPlanningDate;
     private String name;
     private String phone;
 }
